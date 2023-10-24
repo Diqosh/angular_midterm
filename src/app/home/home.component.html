@@ -1,0 +1,18 @@
+<button mat-raised-button (click)="openCreatePostDialog()">Create Post</button>
+<div *ngFor="let post of posts" class="post-container">
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <button class="like-btn" (click)="toggleLike(post.id)">❤️ {{ post.likes }}</button>
+    </div>
+
+    <button class="comments-toggle" (click)="toggleComments(post.id)">
+        {{ post.showComments ? 'Hide Comments' : 'Show Comments' }}
+    </button>
+
+    <div *ngIf="post.showComments" class="comments">
+        <div *ngFor="let comment of getCommentsByPostId(post.id)" class="comment">
+            {{ comment.content }}
+        </div>
+    </div>
+</div>
